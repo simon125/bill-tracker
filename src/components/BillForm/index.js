@@ -22,6 +22,18 @@ class BillForm extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         const bill = { ...this.state.billData }
+        this.setState({
+            billData: {
+                price: '',
+                nameShop: '',
+                shoppingDate: '',
+                payment: '',
+                products: []
+            },
+            productName: '',
+            productPrice: '',
+            productAmount: ''
+        })
         this.props.addBill(bill)
     }
     handleOnChange = (e) => {
