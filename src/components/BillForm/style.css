@@ -1,0 +1,14 @@
+input[type="radio"] {
+    display: none;
+  }
+  
+ label {
+    cursor: pointer;
+  }
+  
+input[type="radio"]:checked + label {
+    padding: 10px;
+    background-color: #efefefef;
+    border: 2px solid #888;
+    border-radius: 5px 5px 5px 5px;
+  }
