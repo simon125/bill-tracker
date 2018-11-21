@@ -27,7 +27,12 @@ const SingleBill = ({ bill }) => {
                     bill.products.length === 0 ?
                         <li className="list-group-item">You didn't enter more data</li>
                         :
-                        bill.products.map(product => <li className="list-group-item">{product.productName}</li>)
+                        bill.products.map(product =>
+                            <li className="list-group-item d-flex justify-content-between">
+                                <span>{product.productName}</span>
+                                <span>{product.productAmount} x {product.productPrice} PLN</span>
+                                <span>Total: {product.productAmount * product.productPrice} PLN</span>
+                            </li>)
                 }
             </ul>
             <p className="card-text"><small className="text-muted">{bill.shoppingDate}</small></p>
