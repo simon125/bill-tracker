@@ -17,7 +17,7 @@ class Bills extends Component {
                         <h1 className="display-4 mt-5">You have no bills to render</h1>
                         :
                         <div className="card-columns container mx-auto">
-                            {bills.map(bill => <SingleBill bill={bill} />)}
+                            {bills.map(bill => <SingleBill key={Math.random()} bill={bill} />)}
                         </div>
                 }
             </React.Fragment>

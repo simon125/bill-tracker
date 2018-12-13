@@ -202,9 +202,8 @@ class BillForm extends Component {
                                         <button
                                             type="button"
                                             onClick={this.handleOnClick}
-                                            className="btn btn-outline-success"
-                                            style={{ width: "60px", height: "60px", borderRadius: '50%' }}>
-                                            <i className="fas fa-plus fa-3x"></i>
+                                            className="btn btn-outline-success">
+                                            Add new product<i className="fas fa-plus fa-lg ml-2"></i>
                                         </button>
                                     </div>
                                     <div className="form-group">
@@ -237,7 +236,7 @@ class BillForm extends Component {
                         </div>
                     </div>
                 </form>
-            </div>
+            </div >
         )
     }
 }
