@@ -3,6 +3,8 @@ import SingleBill from './SingleBill'
 
 import { connect } from 'react-redux'
 
+import './style.css'
+
 
 
 class Bills extends Component {

@@ -19,22 +19,46 @@ class BillForm extends Component {
         productAmount: ''
 
     }
+
+
+    isValid = (price, products) => {
+        if (products.length === 0) {
+            return true
+        }
+        const totalPrice = products.reduce((sum, product) => {
+            const sumPrice = product.productAmount * product.productPrice;
+            return sum += sumPrice
+        }, 0)
+        if (parseInt(price) === totalPrice) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
     handleOnSubmit = (e) => {
         e.preventDefault()
         const bill = { ...this.state.billData }
-        this.setState({
-            billData: {
-                price: '',
-                nameShop: '',
-                shoppingDate: '',
-                payment: '',
-                products: []
-            },
-            productName: '',
-            productPrice: '',
-            productAmount: ''
-        })
-        this.props.addBill(bill)
+        if (this.isValid(bill.price, bill.products)) {
+            this.setState({
+                billData: {
+                    price: '',
+                    nameShop: '',
+                    shoppingDate: '',
+                    payment: '',
+                    products: []
+                },
+                productName: '',
+                productPrice: '',
+                productAmount: ''
+            })
+            this.props.addBill(bill)
+        }
+        else {
+            alert('Sth went wrong')
+        }
+
     }
     handleOnChange = (e) => {
         this.setState({
