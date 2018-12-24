@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import SingleBill from './SingleBill'
-
+import SingleBill from '../SingleBill'
 import { connect } from 'react-redux'
-
 import './style.css'
-
-
 
 class Bills extends Component {
 
@@ -13,16 +9,16 @@ class Bills extends Component {
         const bills = this.props.bills
 
         return (
-            <React.Fragment>
+            <div className="container-fluid">
                 {
                     bills.length === 0 ?
                         <h1 className="display-4 mt-5">You have no bills to render</h1>
                         :
-                        <div className="card-columns container mx-auto">
+                        <div className="row mx-auto justify-content-between">
                             {bills.map(bill => <SingleBill key={Math.random()} bill={bill} />)}
                         </div>
                 }
-            </React.Fragment>
+            </div>
         )
     }
 }
