@@ -8,6 +8,18 @@ const initialState = {
             products: [
                 { productName: 'Kawa', productPrice: 20, productAmount: 2 },
                 { productName: 'Mleko', productPrice: 4, productAmount: 10 },
+                { productName: 'Śmietana', productPrice: 3, productAmount: 4 },
+                { productName: 'Kawa', productPrice: 20, productAmount: 2 },
+                { productName: 'Mleko', productPrice: 4, productAmount: 10 },
+                { productName: 'Śmietana', productPrice: 3, productAmount: 4 },
+                { productName: 'Kawa', productPrice: 20, productAmount: 2 },
+                { productName: 'Mleko', productPrice: 4, productAmount: 10 },
+                { productName: 'Śmietana', productPrice: 3, productAmount: 4 },
+                { productName: 'Kawa', productPrice: 20, productAmount: 2 },
+                { productName: 'Mleko', productPrice: 4, productAmount: 10 },
+                { productName: 'Śmietana', productPrice: 3, productAmount: 4 },
+                { productName: 'Kawa', productPrice: 20, productAmount: 2 },
+                { productName: 'Mleko', productPrice: 4, productAmount: 10 },
                 { productName: 'Śmietana', productPrice: 3, productAmount: 4 }
             ]
         },

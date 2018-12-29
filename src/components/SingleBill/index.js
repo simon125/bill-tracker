@@ -4,22 +4,19 @@ import './style.css'
 class SingleBill extends React.Component {
 
     state = {
-        results: 1,
-        expandedResults: false
+        isOpen: false,
     }
 
-    expandResults = () => {
-        if (!this.state.expandedResults) {
-            this.setState({ results: this.props.bill.products.length + 1, expandedResults: !this.state.expandedResults });
-        } else {
-            this.setState({ results: 1, expandedResults: !this.state.expandedResults });
-        }
+    handleOnClick = e => {
+        this.setState({ isOpen: !this.state.isOpen });
+        console.log(this.state.isOpen)
     }
+
 
     renderTableRows = () => {
         return (
-            this.props.bill.products.map((product, index) =>
-                <tr className={index < this.state.results ? "d-cell" : "d-none"} key={Math.random()}>
+            this.props.bill.products.map((product) =>
+                <tr key={Math.random()}>
                     <td>{product.productName}</td>
                     <td>{parseFloat(product.productAmount).toFixed(2)} x {parseFloat(product.productPrice).toFixed(2)} PLN</td>
                     <td>{parseFloat(product.productAmount * product.productPrice).toFixed(2)} PLN</td>
@@ -32,7 +29,7 @@ class SingleBill extends React.Component {
         const { bill } = this.props;
 
         return (
-            <div className="mt-3 col-sm-12 col-md-6 col-lg-4  px-1">
+            <div className="mt-3 col-sm-12 col-md-6 col-lg-4 px-1 " >
                 <div className="card card-body border-dark single-bill__card">
                     <h5 className="card-title d-flex justify-content-between">
                         <span>
@@ -46,21 +43,26 @@ class SingleBill extends React.Component {
                         bill.products.length === 0 ?
                             <li className="list-group-item">You spent {parseFloat(bill.price).toFixed(2)} PLN</li>
                             :
-                            <table className="table table-bordered table-light text-secondary table-sm">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Quantity x price</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.renderTableRows()}
-                                    <tr>
-                                        <td colSpan='3' className='lead'>Sum: {parseFloat(bill.price).toFixed(2)} PLN</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div style={{ height: '150px', overflow: 'auto' }}>
+                                <table className="table table-bordered table-light text-secondary table-sm mb-0">
+
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Quantity x price</th>
+                                            <th scope="col">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.renderTableRows()}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colSpan='3' className='lead'>Sum: {parseFloat(bill.price).toFixed(2)} PLN</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                     }
                     {bill.payment === 'cash'
                         ?
@@ -68,27 +70,7 @@ class SingleBill extends React.Component {
                         :
                         <i className="far single-bill__icon fa-credit-card credit-card--color fa-3x"></i>
                     }
-                    {
-                        this.state.results < bill.products.length
-                            ?
-                            <span onClick={() => {
-                                console.log('no estem');
-                                this.expandResults()
-                            }}>
-                                <i className="far fa-arrow-alt-circle-down fa-2x single-bill__icon--expand"></i>
-                            </span>
-                            :
-                            this.state.expandedResults
-                                ?
-                                <span onClick={() => {
-                                    this.expandResults()
-                                }}>
-                                    <i className="far fa-arrow-alt-circle-up fa-2x single-bill__icon--expand"></i>
-                                </span>
 
-                                :
-                                <i style={{ opacity: 0 }} className="far fa-arrow-alt-circle-down fa-2x"></i>
-                    }
                 </div>
             </div>
         )

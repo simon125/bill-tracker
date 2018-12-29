@@ -12,16 +12,23 @@
     transition: all 0.5s;
     transform: rotate(-30deg);
 }
-
 .single-bill__card:hover  .single-bill__icon{
     transform: scale(1.1) rotate(-20deg);
 }
-
 .single-bill__icon--expand{
     cursor: pointer;
-
 }
 .single-bill__icon--expand:hover{
-    color: #aaa;
-    
+    color: #aaa;  
+}
+.single-bill__table-body{
+    position: relative;
+    transition: all 1s;
+}
+.single-bill__table-body--open{
+    height: auto;
+}
+.single-bill__table-body--closed{
+    height: 0px;
+    width: 0px;
 }
