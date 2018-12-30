@@ -1,0 +1,33 @@
+.navbar-nav__rwd--container{
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.712);
+}   
+.navbar-nav__rwd{
+    padding-left: 0;
+    width: 100%;
+    list-style: none;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+.nav-item__rwd{
+    margin: 20px 0;
+    font-size: 30px;
+}
+.nav-item__rwd--option{
+    color: #eee;
+    cursor: pointer;
+    text-decoration: none;
+}
+.nav-item__rwd--option:hover{
+    color: #eee;
+    text-decoration: none;
+    color: #aaa;
+}

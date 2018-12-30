@@ -113,19 +113,24 @@ class BillForm extends Component {
             <div>
                 <form onSubmit={this.handleOnSubmit}>
                     <div className="container">
-                        <div className="row mt-5">
-                            <BillFormRequired
-                                state={this.state}
-                                handleOnChange={this.handleOnChange}
-                            />
-                            <BillFormOptional
-                                handleOnChange={this.handleOnChange}
-                                state={this.state}
-                                deleteProduct={this.deleteProduct}
-                                editProduct={this.editProduct}
-                                handleOnClick={this.handleOnClick}
-                                handleOptionalOnChange={this.handleOptionalOnChange}
-                            />
+                        <div className="row mt-3">
+                            <div className="col-sm-12 col-md-6 bill-form__col">
+                                <BillFormRequired
+                                    state={this.state}
+                                    handleOnChange={this.handleOnChange}
+                                />
+                                <button className="my-3 btn btn-primary btn-block btn-lg bill-form__submit-btn">Add bill</button>
+                            </div>
+                            <div className="col-sm-12 col-md-6 mb-4 bill-form__col">
+                                <BillFormOptional
+                                    handleOnChange={this.handleOnChange}
+                                    state={this.state}
+                                    deleteProduct={this.deleteProduct}
+                                    editProduct={this.editProduct}
+                                    handleOnClick={this.handleOnClick}
+                                    handleOptionalOnChange={this.handleOptionalOnChange}
+                                />
+                            </div>
                         </div>
                     </div>
                 </form>

@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import NavbarRWD from './NavbarRWD'
 class Navbar extends Component {
+    state = {
+        isNavOpen: false,
+    }
+
+    handleOnClick = () => {
+        this.setState({ isNavOpen: !this.state.isNavOpen });
+    }
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <button onClick={this.handleOnClick} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
                 <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
@@ -29,9 +35,11 @@ class Navbar extends Component {
                         <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
+                {
+                    this.state.isNavOpen ? <NavbarRWD handleOnClick={this.handleOnClick} /> : null
+                }
             </nav>
         )
     }
 }
-
 export default Navbar
