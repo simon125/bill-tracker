@@ -18,7 +18,7 @@ class SingleBill extends React.Component {
             this.props.bill.products.map((product) =>
                 <tr key={Math.random()}>
                     <td>{product.productName}</td>
-                    <td>{parseFloat(product.productAmount).toFixed(2)} x {parseFloat(product.productPrice).toFixed(2)} PLN</td>
+                    <td>{product.productAmount} x {parseFloat(product.productPrice).toFixed(2)} PLN</td>
                     <td>{parseFloat(product.productAmount * product.productPrice).toFixed(2)} PLN</td>
                 </tr>
             )

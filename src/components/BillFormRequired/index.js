@@ -3,9 +3,10 @@ import React from 'react'
 const BillFormRequired = ({ state, handleOnChange, }) => {
 
     return (
-        <div className="card card-body">
-            <h3>Required</h3>
+        <div className="card card-body  text-left">
+            <h3 className="text-center">Required</h3>
             <div className="form-group mt-3">
+                <label htmlFor="price">Price</label>
                 <input
                     min="0"
                     value={state.billData.price}
@@ -21,6 +22,7 @@ const BillFormRequired = ({ state, handleOnChange, }) => {
                 </div>
             </div>
             <div className="form-group">
+                <label htmlFor="nameShop">Shop name</label>
                 <input
                     max="15"
                     value={state.billData.nameShop}
@@ -36,6 +38,7 @@ const BillFormRequired = ({ state, handleOnChange, }) => {
                 </div>
             </div>
             <div className="form-group">
+                <label htmlFor="shoppingDate">Shopping date</label>
                 <input
                     value={state.billData.shoppingDate}
                     onChange={handleOnChange}

@@ -26,7 +26,7 @@ class BillForm extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         const bill = { ...this.state.billData }
-        if (isValid(bill.price, bill.products)) {
+        if (/*isValid(bill)*/true) {
             this.setState({
                 billData: {
                     price: '',
@@ -49,7 +49,7 @@ class BillForm extends Component {
         this.setState({
             billData: {
                 ...this.state.billData,
-                [e.target.name]: e.target.value
+                [e.target.id]: e.target.value
             }
         })
     }

@@ -1,103 +1,94 @@
 import React from 'react'
-import BillFormSingleProduct from '../BillFormSingleProduct'
+import BillFormInput from '../BillFormInput'
+import BillFormProductsList from '../BillFormProductsList'
 
-const BillFormOptional = ({ state, deleteProduct, editProduct, handleOnClick, handleOptionalOnChange, handleOnChange }) => {
+class BillFormOptional extends React.Component {
 
-    const products = state.billData.products;
+    state = {
 
+    }
+    getInputClassName = () => {
 
-    return (
-        <div className="card card-body">
-            <h3>Optional</h3>
-            <ul className="list-group mb-3">
-                {
-                    products === [] ?
-                        null
-                        :
-                        products
-                            .map(product =>
-                                <BillFormSingleProduct
-                                    key={Math.random()}
-                                    productName={product.productName}
-                                    productAmount={product.productAmount}
-                                    productPrice={product.productPrice}
-                                    editProduct={editProduct}
-                                    deleteProduct={deleteProduct} />
-                            )
-                }
-            </ul>
-            <div className="form-group">
-                <input
-                    max="15"
+    }
+    render() {
+        const { state,
+            deleteProduct,
+            editProduct,
+            handleOnClick,
+            handleOptionalOnChange,
+            handleOnChange } = this.props;
+        const products = state.billData.products;
+
+        return (
+            <div className="card card-body text-left">
+                <h3 className="text-center">Optional</h3>
+                <BillFormProductsList
+                    products={products}
+                    deleteProduct={deleteProduct}
+                    editProduct={editProduct}
+                />
+                <BillFormInput
+                    label="Product"
                     value={state.productName}
                     onChange={handleOptionalOnChange}
-                    type="text"
-                    name="productName"
-                    placeholder="Product name..."
                     id="productName"
-                    className={window.innerWidth < 590 ? "form-control form-control-sm" : "form-control form-control-lg"}
-                // className="form-control form-control-lg " 
+                    type="text"
+                    placeholder="Product name..."
                 />
-            </div>
-            <div className="form-group">
-                <input
-                    min="0"
-                    onChange={handleOptionalOnChange}
+                <BillFormInput
+                    label="Price"
                     value={state.productPrice}
-                    type="number"
-                    name="productPrice"
-                    placeholder="Price..."
-                    id="productPrice"
-                    className={window.innerWidth < 590 ? "form-control form-control-sm" : "form-control form-control-lg"}
-                />
-            </div>
-            <div className="form-group">
-                <input
-                    min="0"
                     onChange={handleOptionalOnChange}
-                    value={state.productAmount}
+                    id="productPrice"
                     type="number"
-                    name="productAmount"
-                    placeholder="Amount..."
-                    id="productAmount"
-                    className={window.innerWidth < 590 ? "form-control form-control-sm" : "form-control form-control-lg"}
+                    placeholder="Product price..."
                 />
-            </div>
-            <div className="form-group">
-                <button
-                    type="button"
-                    onClick={handleOnClick}
-                    className="btn btn-outline-success">
-                    Add new product<i className="fas fa-plus fa-lg ml-2"></i>
-                </button>
-            </div>
-            <div className="form-group">
-                <h4>Payment by:</h4>
-                <div className="d-flex justify-content-around ">
-                    <input
-                        className="paymentMethod"
-                        value="cash"
-                        onChange={handleOnChange}
-                        type="radio"
-                        name="payment"
-                        id="cashPayment" />
-                    <label className="paymentMethod" htmlFor="cashPayment">
-                        <i className="text-success fas fa-money-bill fa-3x"></i>
-                    </label>
-                    <input
-                        className="paymentMethod"
-                        value="card"
-                        onChange={handleOnChange}
-                        type="radio"
-                        name="payment"
-                        id="cardPayment" />
-                    <label className="paymentMethod" htmlFor="cardPayment">
-                        <i style={{ color: '#6585bb' }} className="far fa-credit-card  fa-3x"></i>
-                    </label>
+                <BillFormInput
+                    label="Amount"
+                    value={state.productAmount}
+                    onChange={handleOptionalOnChange}
+                    id="productAmount"
+                    type="number"
+                    placeholder="Product amount..."
+                />
+                <div className="form-group text-center">
+                    <button
+                        // disabled={true}
+                        type="button"
+                        onClick={handleOnClick}
+                        className="btn btn-outline-success  disabled">
+                        Add new product<i className="fas fa-plus fa-lg ml-2"></i>
+                    </button>
+                </div>
+                <div className="form-group text-center">
+                    <h4>Payment by:</h4>
+                    <div className="d-flex justify-content-around ">
+                        <input
+                            className="paymentMethod"
+                            value="cash"
+                            onChange={handleOnChange}
+                            type="radio"
+                            name="payment"
+                            id="cashPayment" />
+                        <label className="paymentMethod" htmlFor="cashPayment">
+                            <i className="text-success fas fa-money-bill fa-3x"></i>
+                        </label>
+                        <input
+                            className="paymentMethod"
+                            value="card"
+                            onChange={handleOnChange}
+                            type="radio"
+                            name="payment"
+                            id="cardPayment" />
+                        <label className="paymentMethod" htmlFor="cardPayment">
+                            <i style={{ color: '#6585bb' }} className="far fa-credit-card  fa-3x"></i>
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    };
+
 }
 
 

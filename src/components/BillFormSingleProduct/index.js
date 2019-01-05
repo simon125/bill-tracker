@@ -68,21 +68,21 @@ class Product extends React.Component {
                     <span>
                         <button
                             type="button"
-                            className="btn btn-success btn-sm"
+                            className="btn btn-success btn-sm p-1 ml-1"
                             onClick={() => this.handleOnSaveClick(productName, this.state.newName, this.state.newPrice, this.state.newAmount)}
                         >
-                            <i className="fa fa-check fa-2x"></i>
+                            <i className="fa fa-check fa-lg"></i>
                         </button>
                     </span>
                 </li>
                 :
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                     <span className="lead"> {productName} </span>
-                    <span>  {productAmount} x {productPrice} PLN</span>
+                    <span>  {productAmount} x {productPrice} PLN </span>
                     <span>
                         <button
                             type="button"
-                            className="btn btn-outline-info mr-3"
+                            className="btn btn-outline-info mr-3 btn-sm ml-1"
                             onClick={() => this.setState({ editMode: true })}
                             style={{ fontSize: '20px' }}>
                             <i className="fas fa-edit "></i>
@@ -90,7 +90,7 @@ class Product extends React.Component {
 
                         <button
                             type="button"
-                            className="btn btn-outline-danger"
+                            className="btn btn-outline-danger btn-sm"
                             onClick={() => deleteProduct(productName)}
                             style={{ fontSize: '20px' }}>
                             &times;
