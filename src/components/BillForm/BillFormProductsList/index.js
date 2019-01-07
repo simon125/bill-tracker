@@ -1,7 +1,7 @@
 import React from 'react'
 import BillFormSingleProduct from '../BillFormSingleProduct'
 
-const BillFormProductsList = ({ products, editProduct, deleteProduct }) => {
+const BillFormProductsList = ({ products, editSingleProduct, deleteSingleProduct }) => {
     return (
         <ul className="list-group mb-3">
             {
@@ -11,12 +11,13 @@ const BillFormProductsList = ({ products, editProduct, deleteProduct }) => {
                     products
                         .map(product =>
                             <BillFormSingleProduct
-                                key={Math.random()}
+                                key={product.uid}
                                 productName={product.productName}
                                 productAmount={product.productAmount}
                                 productPrice={product.productPrice}
-                                editProduct={editProduct}
-                                deleteProduct={deleteProduct} />
+                                uid={product.uid}
+                                editSingleProduct={editSingleProduct}
+                                deleteSingleProduct={deleteSingleProduct} />
                         )
             }
         </ul>

@@ -9,10 +9,9 @@ class Product extends React.Component {
         newAmount: ''
     }
 
-    // editProduct = (editedProductName, newName, newPrice, newAmount)
-
-    handleOnSaveClick = (productName, newName, newPrice, newAmount) => {
-        this.props.editProduct(productName, newName, newPrice, newAmount)
+    handleOnSaveClick = (uid, newName, newPrice, newAmount) => {
+        const newProduct = { uid, productName: newName, productPrice: newPrice, productAmount: newAmount };
+        this.props.editSingleProduct(uid, newProduct)
         this.setState({
             editMode: false
         })
@@ -33,27 +32,32 @@ class Product extends React.Component {
     }
     render() {
 
-        const { productName, productAmount, productPrice, deleteProduct } = this.props
+        const { productName, productAmount, productPrice, uid, deleteSingleProduct } = this.props
 
         return (
             this.state.editMode ?
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                    <span className="lead">
+                    <span>
                         <input
                             onChange={this.handleOnChange}
                             type="text"
                             id="newName"
-                            className="form-control form-control-sm"
+                            className="form-control form-control-sm is-invalid"
                             value={this.state.newName} />
-
+                        <div className="invalid-feedback">
+                            asdfasdfasdf
+                        </div>
                     </span>
                     <span>
                         <input
                             onChange={this.handleOnChange}
                             type="number"
                             id="newAmount"
-                            className="form-control form-control-sm"
+                            className="form-control form-control-sm is-invalid"
                             value={this.state.newAmount} />
+                        <div className="invalid-feedback">
+                            asdfasdfasd
+                        </div>
                     </span>
                     x
                     <span>
@@ -61,15 +65,17 @@ class Product extends React.Component {
                             onChange={this.handleOnChange}
                             type="number"
                             id="newPrice"
-                            className="form-control form-control-sm"
+                            className="form-control form-control-sm is-invalid"
                             value={this.state.newPrice} />
+                        <div className="invalid-feedback">
+                            sadfasdfsd
+                        </div>
                     </span> PLN
-
                     <span>
                         <button
                             type="button"
                             className="btn btn-success btn-sm p-1 ml-1"
-                            onClick={() => this.handleOnSaveClick(productName, this.state.newName, this.state.newPrice, this.state.newAmount)}
+                            onClick={() => this.handleOnSaveClick(uid, this.state.newName, this.state.newPrice, this.state.newAmount)}
                         >
                             <i className="fa fa-check fa-lg"></i>
                         </button>
@@ -87,11 +93,10 @@ class Product extends React.Component {
                             style={{ fontSize: '20px' }}>
                             <i className="fas fa-edit "></i>
                         </button>
-
                         <button
                             type="button"
                             className="btn btn-outline-danger btn-sm"
-                            onClick={() => deleteProduct(productName)}
+                            onClick={() => deleteSingleProduct(uid)}
                             style={{ fontSize: '20px' }}>
                             &times;
                     </button>

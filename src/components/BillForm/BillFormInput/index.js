@@ -1,28 +1,26 @@
 import React from 'react'
 
-const BillFormInput = ({ id, placeholder, onChange, value, type, label }) => {
+const BillFormInput = ({ name, id, placeholder, handleOnChange, inputValue, type, label, validState }) => {
 
-    const valid = false;
-    const afterCorrect = true;
+    // handleOnChange, value, validState
+
     let className;
-    let message = 'asdfasdfasdfsad';
-
-
-    if (valid && !afterCorrect) {
+    const valid = validState.isValid;
+    if (valid === "") {
         className =
             window.innerWidth < 590
                 ?
                 "form-control form-control-sm"
                 :
                 "form-control form-control-lg"
-    } else if (valid && afterCorrect) {
+    } else if (valid === true) {
         className =
             window.innerWidth < 590
                 ?
                 "form-control form-control-sm is-valid"
                 :
                 "form-control form-control-lg is-valid"
-    } else {
+    } else if (!valid) {
         className =
             window.innerWidth < 590
                 ?
@@ -36,15 +34,16 @@ const BillFormInput = ({ id, placeholder, onChange, value, type, label }) => {
         <div className="form-group">
             <label htmlFor={id}>{label}</label>
             <input
-                onChange={onChange}
-                value={value}
+                name={name}
+                onChange={handleOnChange}
+                value={inputValue}
                 type={type}
                 placeholder={placeholder}
                 id={id}
                 className={className}
             />
             <div className="invalid-feedback">
-                {message}
+                {validState.message}
             </div>
         </div>
     )

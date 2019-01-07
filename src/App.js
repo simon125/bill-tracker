@@ -3,7 +3,7 @@ import './App.css'
 
 import Navbar from './components/Navbar/index.js'
 import HomePage from './components/HomePage/index.js'
-import BillForm from './containers/BillForm'
+import BillForm from './components/BillForm/BillFormContainer'
 import Bills from './components/Bills/index.js'
 import Statistics from './components/Statistics/index.js'
 
