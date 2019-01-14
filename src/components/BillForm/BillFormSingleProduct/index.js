@@ -6,15 +6,73 @@ class Product extends React.Component {
         editMode: false,
         newName: '',
         newPrice: '',
-        newAmount: ''
+        newAmount: '',
+        validState: {
+            nameValidity: {
+                className: 'form-control form-control-sm'
+            },
+            priceValidity: {
+                className: 'form-control form-control-sm'
+            },
+            amountValidity: {
+                className: 'form-control form-control-sm'
+            },
+        }
+    }
+
+    setValidity = (field, className) => {
+        this.setState((state) => {
+            return {
+                ...state,
+                validState: {
+                    ...state.validState,
+                    [field]: {
+                        className
+                    }
+                }
+            }
+        })
+    }
+
+    checkValidity = (newName, newPrice, newAmount) => {
+        let nameValidity, priceValidity, amountValidity;
+
+        if (newName.trim() !== '' && newName.length < 15) {
+
+            this.setValidity('nameValidity', 'form-control form-control-sm');
+            nameValidity = true
+        } else {
+            this.setValidity('nameValidity', 'form-control form-control-sm is-invalid');
+            nameValidity = false
+        }
+        if (parseFloat(newPrice) > 0 && newPrice.trim() !== '') {
+            console.log(parseFloat(newPrice) > 0, ' newprice ', parseFloat(newPrice))
+            this.setValidity('priceValidity', 'form-control form-control-sm');
+            priceValidity = true
+        } else {
+            this.setValidity('priceValidity', 'form-control form-control-sm is-invalid');
+            priceValidity = false
+        }
+        if (parseInt(newAmount) > 0 && newAmount.trim() !== '') {
+            console.log(parseInt(newAmount) > 0, ' newamount ', parseInt(newAmount))
+            this.setValidity('amountValidity', 'form-control form-control-sm');
+            amountValidity = true
+        } else {
+            this.setValidity('amountValidity', 'form-control form-control-sm is-invalid');
+            amountValidity = false
+        }
+        return nameValidity && priceValidity && amountValidity
     }
 
     handleOnSaveClick = (uid, newName, newPrice, newAmount) => {
-        const newProduct = { uid, productName: newName, productPrice: newPrice, productAmount: newAmount };
-        this.props.editSingleProduct(uid, newProduct)
-        this.setState({
-            editMode: false
-        })
+        if (this.checkValidity(newName, newPrice, newAmount)) {
+            const newProduct = { uid, productName: newName, productPrice: newPrice, productAmount: newAmount };
+            this.props.editSingleProduct(uid, newProduct)
+            this.setState({
+                editMode: false
+            })
+        }
+
     }
     handleOnChange = (e) => {
         this.setState({
@@ -32,8 +90,8 @@ class Product extends React.Component {
     }
     render() {
 
-        const { productName, productAmount, productPrice, uid, deleteSingleProduct } = this.props
-
+        const { productName, productAmount, productPrice, uid, deleteSingleProduct } = this.props;
+        const { validState: { nameValidity, priceValidity, amountValidity } } = this.state;
         return (
             this.state.editMode ?
                 <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -42,22 +100,16 @@ class Product extends React.Component {
                             onChange={this.handleOnChange}
                             type="text"
                             id="newName"
-                            className="form-control form-control-sm is-invalid"
+                            className={nameValidity.className}
                             value={this.state.newName} />
-                        <div className="invalid-feedback">
-                            asdfasdfasdf
-                        </div>
                     </span>
                     <span>
                         <input
                             onChange={this.handleOnChange}
                             type="number"
                             id="newAmount"
-                            className="form-control form-control-sm is-invalid"
+                            className={amountValidity.className}
                             value={this.state.newAmount} />
-                        <div className="invalid-feedback">
-                            asdfasdfasd
-                        </div>
                     </span>
                     x
                     <span>
@@ -65,16 +117,14 @@ class Product extends React.Component {
                             onChange={this.handleOnChange}
                             type="number"
                             id="newPrice"
-                            className="form-control form-control-sm is-invalid"
+                            className={priceValidity.className}
                             value={this.state.newPrice} />
-                        <div className="invalid-feedback">
-                            sadfasdfsd
-                        </div>
                     </span> PLN
                     <span>
                         <button
+                            style={{ border: 'none' }}
                             type="button"
-                            className="btn btn-success btn-sm p-1 ml-1"
+                            className="btn btn-outline-success btn-sm p-1 ml-1"
                             onClick={() => this.handleOnSaveClick(uid, this.state.newName, this.state.newPrice, this.state.newAmount)}
                         >
                             <i className="fa fa-check fa-lg"></i>
@@ -90,14 +140,14 @@ class Product extends React.Component {
                             type="button"
                             className="btn btn-outline-info mr-3 btn-sm ml-1"
                             onClick={() => this.setState({ editMode: true })}
-                            style={{ fontSize: '20px' }}>
+                            style={{ fontSize: '20px', border: 'none' }}>
                             <i className="fas fa-edit "></i>
                         </button>
                         <button
                             type="button"
                             className="btn btn-outline-danger btn-sm"
                             onClick={() => deleteSingleProduct(uid)}
-                            style={{ fontSize: '20px' }}>
+                            style={{ fontSize: '20px', border: 'none' }}>
                             &times;
                     </button>
                     </span>

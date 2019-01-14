@@ -51,7 +51,6 @@ class BillForm extends Component {
             }
         })
     }
-
     checkPrices = (products, price) => {
         if (products.length !== 0) {
             const totalPrice = products.reduce((total, product) => {
@@ -62,8 +61,6 @@ class BillForm extends Component {
             return isEqual
         } else return true
     }
-
-
     validateReqForm = (price, shopName, shoppingDate) => {
         let isPriceValid, isShopNameValid, isShoppingDateValid;
         if (price.trim() !== '' && parseFloat(price) > 0) {
@@ -89,7 +86,6 @@ class BillForm extends Component {
         }
         return isPriceValid && isShopNameValid && isShoppingDateValid;
     }
-
     handleOnSubmit = (e) => {
         e.preventDefault()
         const { price, shopName, shoppingDate } = this.state.requiredForm;
@@ -110,6 +106,15 @@ class BillForm extends Component {
                         className: 'alert alert-success',
                         message: 'You have succesfully add bill to bill tracker!!!',
                         visibility: true
+                    },
+                    requiredForm: {
+                        price: '',
+                        shopName: '',
+                        shoppingDate: ''
+                    },
+                    optionalForm: {
+                        products: [],
+                        payment: ''
                     }
                 }
             })
@@ -200,13 +205,13 @@ class BillForm extends Component {
             <div>
                 {
                     this.state.alert.visibility ?
-                        <div style={{ width: '60%', zIndex: 9000, position: "fixed", top: "100px", left: "50%", transform: "translateX(-50%)" }} className={this.state.alert.className} role="alert">
+                        <div style={{ width: '60%', zIndex: 9000, position: "fixed", top: "70px", left: "50%", transform: "translateX(-50%)" }} className={this.state.alert.className} role="alert">
                             {this.state.alert.message}
                         </div>
                         : null
                 }
                 <form onSubmit={this.handleOnSubmit}>
-                    <div className="container">
+                    <div className={window.innerWidth < 993 ? "container-fluid" : "container"}>
                         <div className="row mt-3">
                             <div className="col-sm-12 col-md-6 bill-form__col">
                                 <BillFormRequired

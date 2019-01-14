@@ -2,8 +2,6 @@ import React from 'react'
 
 const BillFormInput = ({ name, id, placeholder, handleOnChange, inputValue, type, label, validState }) => {
 
-    // handleOnChange, value, validState
-
     let className;
     const valid = validState.isValid;
     if (valid === "") {
@@ -28,8 +26,6 @@ const BillFormInput = ({ name, id, placeholder, handleOnChange, inputValue, type
                 :
                 "form-control form-control-lg is-invalid"
     }
-
-
     return (
         <div className="form-group">
             <label htmlFor={id}>{label}</label>
