@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "rc-slider": "^8.6.4",
     "react": "^16.6.3",
+    "react-date-range": "^0.9.4",
     "react-datepicker": "^2.0.0",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",

@@ -29,7 +29,7 @@ class SingleBill extends React.Component {
         const { bill } = this.props;
 
         return (
-            <div className="mt-3 col-sm-12 col-md-6 col-lg-4 px-1 " >
+            <div style={{ display: 'inline-block' }} className="mt-3 col-sm-12 col-md-6 col-lg-4 px-1 " >
                 <div className="card card-body border-dark single-bill__card">
                     <h5 className="card-title d-flex justify-content-between">
                         <span>
