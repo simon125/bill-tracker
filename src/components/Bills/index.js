@@ -16,23 +16,35 @@ class Bills extends Component {
         sortOption: {
 
         },
-        startDate: '',
-        endDate: '',
+        rangeDate: '',
         rangePeriods: { min: 2, max: 10 },
-        rangeInputValue: [2, 100]
+        rangeInputValue: [2, 100],
+        isDateWidgetOpen: false,
     }
 
-    handleChangeStart(date) {
+    handleChangeStart = (date) => {
         this.setState({
             ...this.state,
             startDate: date
         });
     }
-    handleChangeEnd(date) {
+    handleChangeEnd = (date) => {
         this.setState({
             ...this.state,
             endDate: date
         });
+    }
+    handleOnDatePickerClick = () => {
+        this.setState({
+            ...this.state,
+            isDateWidgetOpen: !this.state.isDateWidgetOpen
+        });
+    }
+    setDateRange = (date) => {
+        this.setState({
+            ...this.state,
+            rangeDate: date
+        })
     }
 
 
@@ -85,20 +97,35 @@ class Bills extends Component {
                                                     defaultValue={[30, 60]}
                                                     value={this.state.rangeInputValue}
                                                     min={this.state.rangePeriods.min}
-                                                    min={this.state.rangePeriods.max}
+                                                    max={this.state.rangePeriods.max}
                                                 />
                                             </li>
                                             <li>
-                                                <DateWidget />
+                                                <div className="form-group mt-5">
+                                                    <label htmlFor="date-range">Choose date range</label>
+                                                    <input
+                                                        onClick={this.handleOnDatePickerClick}
+                                                        id="date-range"
+                                                        className="form-control"
+                                                        placeholder="Choose date range" />
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-
                                 <div className="col-10 col-md-9">
                                     {bills.map(bill => <SingleBill key={Math.random()} bill={bill} />)}
                                 </div>
                             </div>
+                            {
+                                this.state.isDateWidgetOpen ?
+                                    <DateWidget
+                                        setDateRange={this.setDateRange}
+                                        onCloseClick={this.handleOnDatePickerClick}
+                                    />
+                                    :
+                                    null
+                            }
                         </div>
                 }
             </div>
