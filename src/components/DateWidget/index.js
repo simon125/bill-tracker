@@ -7,11 +7,8 @@ import { DateRange } from 'react-date-range';
 const DateWidget = ({ onCloseClick, setDateRange }) => {
 
     const daysInMonth = moment().daysInMonth();
-
-
     const [startDate, setStartDate] = useState(moment().format('01/MM/YYYY'));
     const [endDate, setEndDate] = useState(moment().format(`${daysInMonth}/MM/YYYY`));
-
 
     const onMonthClick = () => {
         const startDate = moment().format(`01/MM/YYYY`);
@@ -59,6 +56,17 @@ const DateWidget = ({ onCloseClick, setDateRange }) => {
         setStartDate(`${dayStart}/${monthStart}/${yearStart}`);
         setEndDate(`${dayEnd}/${monthEnd}/${yearEnd}`);
     }
+    const onApplayClick = async () => {
+
+
+        await setDateRange(startDate + ' - ' + endDate);
+
+        onCloseClick();
+    }
+    const onCancelClick = async () => {
+        await setDateRange('');
+        onCloseClick();
+    }
 
 
 
@@ -94,11 +102,11 @@ const DateWidget = ({ onCloseClick, setDateRange }) => {
                             <h6>{endDate}</h6>
                         </div>
                         <div className="date-widget__functions-btn-group">
-                            <button className="date-widget__button date-widget__button--success">
+                            <button onClick={onApplayClick} className="date-widget__button date-widget__button--success">
                                 {window.innerWidth <= 505 ? <i className="fa fa-check"></i> : 'Applay'}
                             </button>
                             <button
-                                onClick={() => onCloseClick()}
+                                onClick={onCancelClick}
                                 className="date-widget__button date-widget__button--danger clear-margin-r">
                                 {window.innerWidth <= 505 ? <i className="fa fa-times"></i> : 'Cancel'}
                             </button>
@@ -110,7 +118,6 @@ const DateWidget = ({ onCloseClick, setDateRange }) => {
                             endDate={endDate}
                             twoStepChange={true}
                             onChange={setRangeDates}
-
                         />
                     </div>
                 </div>

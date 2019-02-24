@@ -41,10 +41,12 @@ class Bills extends Component {
         });
     }
     setDateRange = (date) => {
-        this.setState({
-            ...this.state,
-            rangeDate: date
-        })
+        this.setState((state) => {
+            return {
+                ...state,
+                rangeDate: date
+            }
+        });
     }
 
 
@@ -107,7 +109,9 @@ class Bills extends Component {
                                                         onClick={this.handleOnDatePickerClick}
                                                         id="date-range"
                                                         className="form-control"
-                                                        placeholder="Choose date range" />
+                                                        placeholder="Choose date range"
+                                                        onChange={() => { }}
+                                                        value={this.state.rangeDate} />
                                                 </div>
                                             </li>
                                         </ul>
@@ -117,15 +121,12 @@ class Bills extends Component {
                                     {bills.map(bill => <SingleBill key={Math.random()} bill={bill} />)}
                                 </div>
                             </div>
-                            {
-                                this.state.isDateWidgetOpen ?
-                                    <DateWidget
-                                        setDateRange={this.setDateRange}
-                                        onCloseClick={this.handleOnDatePickerClick}
-                                    />
-                                    :
-                                    null
-                            }
+                            <section className={this.state.isDateWidgetOpen ? "" : "d-none"}>
+                                <DateWidget
+                                    setDateRange={this.setDateRange}
+                                    onCloseClick={this.handleOnDatePickerClick}
+                                />
+                            </section>
                         </div>
                 }
             </div>
