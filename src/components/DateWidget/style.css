@@ -1,0 +1,121 @@
+.date-widget__container{
+    background-color: rgba(0,0,0,0.7);
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.date-widget__card{
+    box-sizing: border-box;
+    word-wrap: break-word;
+    background-color: #4E5D6C;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 0;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    position: absolute; 
+    top: 50vh; 
+    left: 50vw; 
+    transform: translate(-50%, -50%); 
+    width: 480px; 
+}
+.date-widget__columns-container{
+    display: flex;
+}
+.date-widget__column1{
+    display: flex;
+    margin-right: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.date-widget__close--x{
+    position: absolute;
+    top: -50px; 
+    right: -30px;
+    font-size: 40px;
+    cursor: pointer;
+}
+.date-widget__button{
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #EBEBEB;
+    text-align: center;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    display: block;
+    width: 150px;
+}
+.date-widget__button--function{
+    background-color: #DF691A;
+}
+.date-widget__button--success{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
+.date-widget__button--danger{
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+
+@media screen and (max-width: 505px) {
+    .date-widget__container{
+        z-index: 100000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .date-widget__card {
+      padding: 0;
+      position: relative;
+      width: 100%;
+      height: fit-content;
+      top: 0;
+      left: 0;
+      right: 0;  
+      transform: none;
+    }
+    .date-widget__column1{
+        margin-right: 0;
+        justify-content: space-between;
+        flex-direction: row;
+        }
+    .date-widget__columns-container{
+        flex-direction: column-reverse;
+    }
+    .date-widget__output {
+        display: none;
+    }
+    .date-widget__this-btn-group, .date-widget__functions-btn-group{
+        display: flex;
+    }
+
+    .date-widget__button{
+       padding: 0;
+       width: 60px;
+       height: 50px;
+       content: ' ';
+       margin-top: 10px;
+       margin-right: 5px;
+       font-size: 12px;
+    }
+    .clear-margin-r{
+        margin-right: 0;
+    }
+
+  }
