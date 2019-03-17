@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import { createStore, /*applyMiddleware, */ compose, combineReducers } from 'redux'
 
 import dataReducer from './reducers/dataReducer'
 

@@ -11,7 +11,52 @@
     transition: all 0.5s;
     transform: rotate(-30deg);
 }
-
 .single-bill__card:hover  .single-bill__icon{
     transform: scale(1.1) rotate(-20deg);
+}
+.option-panel__container{
+    position: fixed;
+    height: 100vh;
+    width: 230px;
+}
+.options-panel__conainer--col-2{
+    padding-left: 15px;
+    z-index: -2;
+}
+@media screen and (max-width: 1490px) and ( min-width: 1273px) {
+    .options-panel__conainer--col-2{
+        padding-left: 55px;
+    }
+} 
+@media screen and (max-width: 1272px) and ( min-width: 992px) {
+    .options-panel__conainer--col-2{
+        padding-left: 85px;
+        padding-right: 80px;
+    }
+} 
+@media screen and (max-width: 1250px) and ( min-width: 880px) {
+    .option-panel__container{
+        width: 200px;
+    }
+}
+@media screen and (max-width: 880px){
+    .option-panel__container{
+        width: 210px;
+    }
+    .options-panel__conainer--col-2{
+        padding-left: 68px;
+    }
+}
+@media screen and (max-width: 767px){
+    .option-panel__container{
+        width: 230px;
+    }
+    .options-panel__conainer--col-2{
+        padding-left: 28px;
+    }
+}
+@media screen and (max-width: 686px){
+    .option-panel__container{
+        width: 200px;
+    }
 }

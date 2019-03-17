@@ -1,42 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Range } from 'rc-slider';
+import { getBillsFiltredByDate, getBillsFiltredByPrice, getBillsFiltredByShopName } from '../../logic';
+import DateWidget from '../DateWidget';
 
-import DateWidget from '../DateWidget'
+export default function index({ setFilteredBills, bills, shopNames, maxPrice }) {
 
-export default function index() {
+    const [shopName, setShopName] = useState('all');
+    const [rangeInputValue, setRangePrice] = useState([20, 80]);
+    const [rangeDate, setDateRange] = useState('');
+    const [isDateWidgetOpen, toggleDateWidget] = useState(false);
 
-
-    handleOnFilterClick = () => {
-        const { rangeDate, rangeInputValue, shopName } = this.state;
-        const { bills } = this.props;
-        let filteredBills = filterByPrice(bills, rangeInputValue);
+    const handleOnRangeChange = (value) => {
+        setRangePrice([...value]);
+    }
+    const handleOnFilterClick = () => {
+        let filteredBills = getBillsFiltredByPrice(bills, rangeInputValue);
 
         if (shopName !== 'all') {
-            filteredBills = filterByShopName(filteredBills, shopName)
+            filteredBills = getBillsFiltredByShopName(filteredBills, shopName)
         }
         if (rangeDate.trim() !== '') {
-            filteredBills = filterByDate(filteredBills, rangeDate);
+            filteredBills = getBillsFiltredByDate(filteredBills, rangeDate);
         }
-        this.setState({
-            ...this.state,
-            bills: filteredBills
-        })
+        setFilteredBills(filteredBills);
     }
-
-
-
+    const handleOnChange = (e) => {
+        setShopName(e.target.value);
+    }
+    const handleOnDatePickerClick = e => {
+        toggleDateWidget(!isDateWidgetOpen);
+    }
     return (
         <div>
             <h3 className="mt-3">
                 <i className="fas fa-filter mr-1"></i>
                 Filter by
-                                    </h3>
+            </h3>
             <label className="text-left" htmlFor="rangePrice">
                 Choose price range
-                                    </label>
+            </label>
             <Range
                 id="rangePrice"
-                onChange={this.handleOnRangeChange}
+                onChange={handleOnRangeChange}
                 defaultValue={[20, 80]}
                 value={rangeInputValue}
                 min={0}
@@ -49,10 +54,10 @@ export default function index() {
             <div className="form-group mt-2">
                 <label htmlFor="shopName">
                     Choose shop name
-                                        </label>
+                </label>
                 <select
                     value={shopName}
-                    onChange={this.changeShopNameFilter}
+                    onChange={handleOnChange}
                     className="form-control"
                     name="shopName"
                     id="shopName">
@@ -68,24 +73,23 @@ export default function index() {
             <div className="form-group mt-2">
                 <label htmlFor="date-range">Choose date range</label>
                 <input
-                    onClick={this.handleOnDatePickerClick}
+                    onClick={handleOnDatePickerClick}
                     id="date-range"
                     className="form-control"
                     placeholder="Choose date range"
                     onChange={() => { }}
+                    defaultValue={rangeDate}
                     style={{ maxWidth: '200px' }} />
             </div>
-            <button onClick={this.handleOnFilterClick} className="btn btn-info btn-block">
+            <button onClick={handleOnFilterClick} className="btn btn-info btn-block">
                 Filter
-                                    </button>
-
+            </button>
             <section className={isDateWidgetOpen ? "" : "d-none"}>
                 <DateWidget
-                    setDateRange={this.setDateRange}
-                    onCloseClick={this.handleOnDatePickerClick}
+                    setDateRange={(dateRange) => setDateRange(dateRange)}
+                    onCloseClick={handleOnDatePickerClick}
                 />
             </section>
-
         </div>
     )
 }

@@ -37,7 +37,7 @@ export const sortBills = (bills, trend) => ({
     }
 })
 
-export const filterByPrice = (bills, rangeInputValue) => {
+export const getBillsFiltredByPrice = (bills, rangeInputValue) => {
     const filtredBills = bills.filter((bill) => {
         if (bill.price >= rangeInputValue[0] && bill.price <= rangeInputValue[1]) {
             return true
@@ -47,11 +47,11 @@ export const filterByPrice = (bills, rangeInputValue) => {
     return filtredBills;
 }
 
-export const filterByShopName = (bills, shopName) => {
+export const getBillsFiltredByShopName = (bills, shopName) => {
     const filtredBills = bills.filter((bill) => bill.nameShop.toLowerCase() === shopName.toLowerCase());
     return filtredBills;
 }
-export const filterByDate = (bills, rangeDate) => {
+export const getBillsFiltredByDate = (bills, rangeDate) => {
     const startDate = rangeDate.split('-')[0].trim();
     const endDate = rangeDate.split('-')[1].trim();
     const filteredBills = bills.filter((bill) => {
