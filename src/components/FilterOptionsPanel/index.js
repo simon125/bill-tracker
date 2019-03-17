@@ -1,76 +1,63 @@
 import React, { useState } from 'react';
 import { Range } from 'rc-slider';
-import { filterByDate, filterByPrice, filterByShopName } from '../../logic';
+import { getBillsFiltredByDate, getBillsFiltredByPrice, getBillsFiltredByShopName } from '../../logic';
 import DateWidget from '../DateWidget';
 
-export default function index({ setFilteredBills }) {
+export default function index({ setFilteredBills, bills, shopNames, maxPrice }) {
 
-    const [shopName, setShopName] = useState('none');
-    const [rangeInputValue, setRangePrice] = useState();
-    const [rangeDate, setRangeDate] = useState();
-    const [isDateWidgetOpen, toggleDateWidget] = useState();
+    const [shopName, setShopName] = useState('all');
+    const [rangeInputValue, setRangePrice] = useState([20, 80]);
+    const [rangeDate, setDateRange] = useState('');
+    const [isDateWidgetOpen, toggleDateWidget] = useState(false);
 
     const handleOnRangeChange = (value) => {
-        setRangePrice(value);
-        // this.setState({ ...this.state, rangeInputValue: value })
+        setRangePrice([...value]);
     }
-
-    // const handleSortClick = (bills) => {
-    //     const sortedBills = sortBills(bills, sortTrend)[sortBy]();
-    //     setSortedBills(sortedBills);
-    //     setSrotTrend(!sortTrend);
-    // }
-    // const handleOnChange = e => {
-    //     setSortOption(e.target.value);
-    //     setSrotTrend(null);
-    // }
-
     const handleOnFilterClick = () => {
-        const { rangeDate, rangeInputValue, shopName } = this.state;
-        const { bills } = this.props;
-        let filteredBills = filterByPrice(bills, rangeInputValue);
+        let filteredBills = getBillsFiltredByPrice(bills, rangeInputValue);
 
         if (shopName !== 'all') {
-            filteredBills = filterByShopName(filteredBills, shopName)
+            filteredBills = getBillsFiltredByShopName(filteredBills, shopName)
         }
         if (rangeDate.trim() !== '') {
-            filteredBills = filterByDate(filteredBills, rangeDate);
+            filteredBills = getBillsFiltredByDate(filteredBills, rangeDate);
         }
         setFilteredBills(filteredBills);
     }
-
-    const getMaxPrice = () => {
-        return 100;
+    const handleOnChange = (e) => {
+        setShopName(e.target.value);
     }
-
+    const handleOnDatePickerClick = e => {
+        toggleDateWidget(!isDateWidgetOpen);
+    }
     return (
         <div>
             <h3 className="mt-3">
                 <i className="fas fa-filter mr-1"></i>
                 Filter by
-                                    </h3>
+            </h3>
             <label className="text-left" htmlFor="rangePrice">
                 Choose price range
-                                    </label>
-            {/* <Range
+            </label>
+            <Range
                 id="rangePrice"
                 onChange={handleOnRangeChange}
                 defaultValue={[20, 80]}
                 value={rangeInputValue}
                 min={0}
-                max={getMaxPrice}// do wyliczenia
-            /> */}
-            {/* <span className="d-flex justify-content-between my-2">
+                max={maxPrice}
+            />
+            <span className="d-flex justify-content-between my-2">
                 <span>{rangeInputValue[0]} PLN</span>
                 <span>{rangeInputValue[1]} PLN</span>
-            </span> */}
-            {/* <div className="form-group mt-2">
+            </span>
+            <div className="form-group mt-2">
                 <label htmlFor="shopName">
                     Choose shop name
-                                        </label>
+                </label>
                 <select
                     value={shopName}
-                    onChange={this.changeShopNameFilter}
+                    onChange={handleOnChange}
                     className="form-control"
                     name="shopName"
                     id="shopName">
@@ -86,24 +73,23 @@ export default function index({ setFilteredBills }) {
             <div className="form-group mt-2">
                 <label htmlFor="date-range">Choose date range</label>
                 <input
-                    onClick={this.handleOnDatePickerClick}
+                    onClick={handleOnDatePickerClick}
                     id="date-range"
                     className="form-control"
                     placeholder="Choose date range"
                     onChange={() => { }}
+                    defaultValue={rangeDate}
                     style={{ maxWidth: '200px' }} />
             </div>
             <button onClick={handleOnFilterClick} className="btn btn-info btn-block">
                 Filter
-                                    </button> */}
-            {/* 
+            </button>
             <section className={isDateWidgetOpen ? "" : "d-none"}>
                 <DateWidget
-                    setDateRange={this.setDateRange}
-                    onCloseClick={this.handleOnDatePickerClick}
+                    setDateRange={(dateRange) => setDateRange(dateRange)}
+                    onCloseClick={handleOnDatePickerClick}
                 />
-            </section> */}
-
+            </section>
         </div>
     )
 }

@@ -46,30 +46,28 @@ const DateWidget = ({ onCloseClick, setDateRange }) => {
         setStartDate(startDate);
         setEndDate(endDate);
     }
+
+    const getValidDate = date => {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return moment(`${day}/${month}/${year}`, 'DD/MM/YYYY').format('DD/MM/YY');
+    }
+
     const setRangeDates = (range) => {
-        const dayEnd = range.endDate._d.getDate();
-        const monthEnd = range.endDate._d.getMonth() + 1;
-        const yearEnd = range.endDate._d.getFullYear();
-        const dayStart = range.startDate._d.getDate();
-        const monthStart = range.startDate._d.getMonth() + 1;
-        const yearStart = range.startDate._d.getFullYear();
-        setStartDate(`${dayStart}/${monthStart}/${yearStart}`);
-        setEndDate(`${dayEnd}/${monthEnd}/${yearEnd}`);
+        const endDate = range.endDate._d;
+        const startDate = range.startDate._d
+        setStartDate(getValidDate(startDate));
+        setEndDate(getValidDate(endDate));
     }
     const onApplayClick = async () => {
-
-
         await setDateRange(startDate + ' - ' + endDate);
-
         onCloseClick();
     }
     const onCancelClick = async () => {
         await setDateRange('');
         onCloseClick();
     }
-
-
-
     return (
         <div className="date-widget__container">
             <div className="date-widget__card">
@@ -118,6 +116,7 @@ const DateWidget = ({ onCloseClick, setDateRange }) => {
                             endDate={endDate}
                             twoStepChange={true}
                             onChange={setRangeDates}
+                            calendars={1}
                         />
                     </div>
                 </div>
