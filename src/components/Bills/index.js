@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-import { getMaxPrice, getShopNames, filterByPrice, filterByShopName, filterByDate } from '../../logic';
+import { getMaxPrice, getShopNames } from '../../logic';
 
 import SingleBill from '../SingleBill'
 import SortOptionsPanel from '../SortOptionsPanel'
+import FilterOptionsPanel from '../FilterOptionsPanel'
 
 import './style.css'
 import 'rc-slider/assets/index.css';
@@ -59,9 +60,6 @@ class Bills extends Component {
             bills: filteredBills
         })
     }
-    handleOnRangeChange = (value) => {
-        this.setState({ ...this.state, rangeInputValue: value })
-    }
     render() {
         const { bills, rangeInputValue, shopName, shopNames, isDateWidgetOpen } = this.state;
         const { maxPrice } = this.props;
@@ -72,17 +70,18 @@ class Bills extends Component {
                         <h1 className="display-4 mt-5">You have no bills to render</h1>
                         :
                         <div className="row">
-                            <div className="col-2">
-                                <div
-                                    style={{ height: '100vh', width: 'stretch', position: 'fixed' }}
-                                    className="card card-body">
+                            <div className="col-4 col-md-3 col-lg-2">
+                                <div className="bg-secondary px-3 option-panel__container">
                                     <h3 className="mt-3">
                                         <i className="fas fa-sort ml-1"></i>
-                                        Sort by</h3>
+                                        Sort by
+                                    </h3>
                                     <SortOptionsPanel
                                         bills={bills}
                                         setSortedBills={this.setSortedBills}
                                     />
+                                    <FilterOptionsPanel
+                                        setFilteredBills={this.setFilteredBills} />
                                     {/* <h3 className="mt-3">
                                         <i className="fas fa-filter mr-1"></i>
                                         Filter by
@@ -136,8 +135,14 @@ class Bills extends Component {
                                     </button> */}
                                 </div>
                             </div>
-                            <div className="col-10">
-                                {bills.map(bill => <SingleBill key={Math.random()} bill={bill} />)}
+                            <div className="col-8 col-md-9 col-lg-10 pr-4 options-panel__conainer--col-2">
+
+                                <div className="row">
+                                    {bills.map(bill => <SingleBill key={Math.random()} bill={bill} />)}
+
+                                </div>
+
+
                             </div>
 
                         </div>

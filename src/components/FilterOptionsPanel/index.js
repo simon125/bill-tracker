@@ -1,12 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Range } from 'rc-slider';
+import { filterByDate, filterByPrice, filterByShopName } from '../../logic';
+import DateWidget from '../DateWidget';
 
-import DateWidget from '../DateWidget'
+export default function index({ setFilteredBills }) {
 
-export default function index() {
+    const [shopName, setShopName] = useState('none');
+    const [rangeInputValue, setRangePrice] = useState();
+    const [rangeDate, setRangeDate] = useState();
+    const [isDateWidgetOpen, toggleDateWidget] = useState();
 
+    const handleOnRangeChange = (value) => {
+        setRangePrice(value);
+        // this.setState({ ...this.state, rangeInputValue: value })
+    }
 
-    handleOnFilterClick = () => {
+    // const handleSortClick = (bills) => {
+    //     const sortedBills = sortBills(bills, sortTrend)[sortBy]();
+    //     setSortedBills(sortedBills);
+    //     setSrotTrend(!sortTrend);
+    // }
+    // const handleOnChange = e => {
+    //     setSortOption(e.target.value);
+    //     setSrotTrend(null);
+    // }
+
+    const handleOnFilterClick = () => {
         const { rangeDate, rangeInputValue, shopName } = this.state;
         const { bills } = this.props;
         let filteredBills = filterByPrice(bills, rangeInputValue);
@@ -17,13 +36,12 @@ export default function index() {
         if (rangeDate.trim() !== '') {
             filteredBills = filterByDate(filteredBills, rangeDate);
         }
-        this.setState({
-            ...this.state,
-            bills: filteredBills
-        })
+        setFilteredBills(filteredBills);
     }
 
-
+    const getMaxPrice = () => {
+        return 100;
+    }
 
     return (
         <div>
@@ -34,19 +52,19 @@ export default function index() {
             <label className="text-left" htmlFor="rangePrice">
                 Choose price range
                                     </label>
-            <Range
+            {/* <Range
                 id="rangePrice"
-                onChange={this.handleOnRangeChange}
+                onChange={handleOnRangeChange}
                 defaultValue={[20, 80]}
                 value={rangeInputValue}
                 min={0}
-                max={maxPrice}
-            />
-            <span className="d-flex justify-content-between my-2">
+                max={getMaxPrice}// do wyliczenia
+            /> */}
+            {/* <span className="d-flex justify-content-between my-2">
                 <span>{rangeInputValue[0]} PLN</span>
                 <span>{rangeInputValue[1]} PLN</span>
-            </span>
-            <div className="form-group mt-2">
+            </span> */}
+            {/* <div className="form-group mt-2">
                 <label htmlFor="shopName">
                     Choose shop name
                                         </label>
@@ -75,16 +93,16 @@ export default function index() {
                     onChange={() => { }}
                     style={{ maxWidth: '200px' }} />
             </div>
-            <button onClick={this.handleOnFilterClick} className="btn btn-info btn-block">
+            <button onClick={handleOnFilterClick} className="btn btn-info btn-block">
                 Filter
-                                    </button>
-
+                                    </button> */}
+            {/* 
             <section className={isDateWidgetOpen ? "" : "d-none"}>
                 <DateWidget
                     setDateRange={this.setDateRange}
                     onCloseClick={this.handleOnDatePickerClick}
                 />
-            </section>
+            </section> */}
 
         </div>
     )

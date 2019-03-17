@@ -15,3 +15,15 @@
 .single-bill__card:hover  .single-bill__icon{
     transform: scale(1.1) rotate(-20deg);
 }
+.option-panel__container{
+    height: 100vh;
+    position: fixed;
+}
+.options-panel__conainer--col-2{
+    padding-left: 15px;
+}
+@media screen and (max-width: 1100px) and ( min-width: 992px) {
+    .options-panel__conainer--col-2{
+        padding-left: 55px;
+    }
+} 
