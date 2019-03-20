@@ -60,3 +60,18 @@
         width: 200px;
     }
 }
+@media screen and (max-width: 630px){
+    .options-panel__conainer--col-2{
+        padding-left: 38px;
+    }
+}
+@media screen and (max-width: 600px){
+    .options-panel__conainer--col-2{
+        padding-left: 55px;
+    }
+}
+@media screen and (max-width: 550px){
+    .options-panel__conainer--col-2{
+        padding-left: 15px;
+    }
+}

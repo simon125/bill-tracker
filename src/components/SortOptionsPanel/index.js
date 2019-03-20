@@ -17,6 +17,10 @@ export default function index({ setSortedBills, bills }) {
 
     return (
         <div>
+            <h3 className="mt-3">
+                <i className="fas fa-sort ml-1"></i>
+                Sort by
+            </h3>
             <div className="form-group mt-4">
                 <label htmlFor="sortBy">Choose sort option</label>
                 <select
