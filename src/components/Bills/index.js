@@ -10,10 +10,7 @@ import FilterOptionsPanel from '../FilterOptionsPanel'
 import './style.css'
 import 'rc-slider/assets/index.css';
 
-const arrowStyle = {
-    border: "2px solid white", width: '25px', height: '25px', borderRadius: '50%', transition: 'all 0.3s'
 
-}
 
 class Bills extends Component {
     state = {
@@ -64,7 +61,7 @@ class Bills extends Component {
                                         <span className="mr-3">Choose filter/sort option</span>
                                         <span
                                             onClick={this.handleOnArrow}
-                                            style={{ ...arrowStyle, transform: `rotate(${this.state.rotateDeg}deg` }}><i className="fas fa-angle-up fa-lg"></i></span>
+                                            style={{ transition: 'all 0.4s', transform: `rotate(${this.state.rotateDeg}deg` }}><i className="fas fa-angle-up fa-lg"></i></span>
                                     </div>
                                     <div style={isMobileDevice ? { overflow: 'hidden', transition: 'all 0.3s', maxHeight: this.state.maxHeight } : {}}>
                                         <SortOptionsPanel

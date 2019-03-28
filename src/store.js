@@ -1,11 +1,13 @@
 import { createStore, /*applyMiddleware, */ compose, combineReducers } from 'redux'
 
-import dataReducer from './reducers/dataReducer'
+import dataReducer from './reducers/dataReducer';
+import statsSettings from './reducers/statsSettingsReducer'
 
 const initialState = {}
 
 const combineReducer = combineReducers({
-    state: dataReducer
+    state: dataReducer,
+    statsSettings
 })
 
 export const store = createStore(
