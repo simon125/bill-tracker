@@ -1,7 +1,44 @@
-import React from 'react';
-import BillFormInput from '../BillFormInput'
+import React, { useState } from 'react';
+import BillFormInput from '../BillFormInput';
+import TagInput from '../BillFormTagInput'
+
+// import { WithContext as ReactTags } from 'react-tag-input';
+// const KeyCodes = {
+//     comma: 188,
+//     enter: 13,
+// };
+
+// const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
 
 const BillFormRequired = ({ requiredFormState, handleOnChange, validState }) => {
+
+    // const [types, addType] = useState(['Sport', 'Rozwój', 'Religia', 'Rozrywka', 'HeathCare', 'Samochód', 'Paliwo', 'Dom', 'Zwierzęta', 'Inne', 'add new'])
+    // const [counterType, setCounterType] = useState(1);
+
+    // const [tags, setTags] = useState([]);
+
+
+    // const handleDelete = (i) => {
+    //     setTags([...tags.filter((tag, index) => index !== i)]);
+    // }
+
+    // const handleAddition = (tag) => {
+    //     setTags([...tags, tag]);
+    // }
+
+    // const handleDrag = (tag, currPos, newPos) => {
+    //     const tagsCopy = [...tags];
+    //     const newTags = tagsCopy.slice();
+
+    //     newTags.splice(currPos, 1);
+    //     newTags.splice(newPos, 0, tag);
+
+    //     // re-render
+    //     setTags([newTags]);
+    // }
+
+
 
     return (
         <div className="card card-body  text-left">
@@ -36,6 +73,7 @@ const BillFormRequired = ({ requiredFormState, handleOnChange, validState }) => 
                 placeholder="Date..."
                 name="shoppingDate"
             />
+            <TagInput />
         </div>
     )
 }
