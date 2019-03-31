@@ -1,0 +1,13 @@
+.tag-input-container{
+background-color: #fff;
+width:100%;
+min-height: 50px; 
+color: #333;
+padding: 8px 10px;
+}
+
+
+.tag-input-container__input{
+    background-color: transparent;
+     outline: none; border: none; width: 100px;
+}
