@@ -52,8 +52,10 @@ export const getBillsFiltredByShopName = (bills, shopName) => {
     return filtredBills;
 }
 export const getBillsFiltredByDate = (bills, rangeDate) => {
+    debugger
     const startDate = rangeDate.split('-')[0].trim();
     const endDate = rangeDate.split('-')[1].trim();
+    debugger
     const filteredBills = bills.filter((bill) => {
         const shoppingDate = moment(bill.shoppingDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
         if (moment(shoppingDate, 'DD/MM/YYYY').isBetween(moment(startDate, 'DD/MM/YYYY'), moment(endDate, 'DD/MM/YYYY'))) {
