@@ -5,7 +5,7 @@ const getDaysFromCurrentMonth = () => {
     return 31;
 }
 const getInitialDateRange = () => {
-    return moment().format('YYYY-MM-01') + " - " + moment().format(`YYYY-MM-${getDaysFromCurrentMonth()}`);
+    return moment().format('YYYY/MM/01') + " - " + moment().format(`YYYY/MM/${getDaysFromCurrentMonth()}`);
 }
 const initialDate = getInitialDateRange();
 const initialState = {

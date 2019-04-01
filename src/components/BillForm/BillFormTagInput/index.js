@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import uuid from 'uuid';
 import './style.css';
 
-export default function index() {
+export default function index({ setTagsToState, tags = [] }) {
 
-    const [tags, setTags] = useState([]);
+    // const [tags, setTags] = useState(initialTags);
     const [newTag, setNewTag] = useState('');
 
     const handleOnChange = (e) => {
@@ -13,8 +13,7 @@ export default function index() {
 
     const renderTag = (tag) => {
         return <span key={tag.id}
-            className="tag-input-container__single-tag"
-            style={{ backgroundColor: 'rgba(0,0,0,0.1)', border: '1px solid #888', color: '#555', borderRadius: '3px', padding: '3px', margin: '2px 3px' }}>
+            className="tag-input-container__single-tag">
             {tag.name}
             <span className="tag-input-container__tag-btn--delete" onClick={() => handleOnDelete(tag.id)} style={{ cursor: 'pointer', marginLeft: '3px' }}>&times;</span>
         </span>
@@ -22,12 +21,17 @@ export default function index() {
     const handleOnAddTag = () => {
         const name = newTag;
         if (name.trim() !== '') {
-            setTags([...tags, { name, id: uuid() }])
+            const newTags = [...tags, { name, id: uuid() }];
+            // setTags(newTags)
             setNewTag('');
+            setTagsToState(newTags);
+
         }
     }
     const handleOnDelete = (id) => {
-        setTags([...tags.filter(tag => tag.id !== id)]);
+        const newTags = [...tags.filter(tag => tag.id !== id)]
+        // setTags(newTags);
+        setTagsToState(newTags);
     }
     return (
         <React.Fragment>
@@ -44,22 +48,12 @@ export default function index() {
                         className="tag-input-container__input"
                         type="text" />
                 </div>
-                <div className="">
+                <div style={{ textAlign: 'center' }}>
                     <button
                         onClick={handleOnAddTag}
                         type="button"
                         className="tag-input-container__btn-add"
-                        style={{
-                            margin: '5px auto',
-                            minWidth: '40px',
-                            width: '200px',
-                            textAlign: 'center',
-                            padding: '5px 0px',
-                            position: 'relative',
-                            border: '1px solid #00c45a',
-                            color: '#00c45a',
-                            outline: 'none'
-                        }}>
+                    >
                         Add new tag <i className="fas fa-plus"></i>
                     </button>
 

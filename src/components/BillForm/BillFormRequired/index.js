@@ -11,33 +11,7 @@ import TagInput from '../BillFormTagInput'
 // const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
-const BillFormRequired = ({ requiredFormState, handleOnChange, validState }) => {
-
-    // const [types, addType] = useState(['Sport', 'Rozwój', 'Religia', 'Rozrywka', 'HeathCare', 'Samochód', 'Paliwo', 'Dom', 'Zwierzęta', 'Inne', 'add new'])
-    // const [counterType, setCounterType] = useState(1);
-
-    // const [tags, setTags] = useState([]);
-
-
-    // const handleDelete = (i) => {
-    //     setTags([...tags.filter((tag, index) => index !== i)]);
-    // }
-
-    // const handleAddition = (tag) => {
-    //     setTags([...tags, tag]);
-    // }
-
-    // const handleDrag = (tag, currPos, newPos) => {
-    //     const tagsCopy = [...tags];
-    //     const newTags = tagsCopy.slice();
-
-    //     newTags.splice(currPos, 1);
-    //     newTags.splice(newPos, 0, tag);
-
-    //     // re-render
-    //     setTags([newTags]);
-    // }
-
+const BillFormRequired = ({ requiredFormState, handleOnChange, validState, setTagsToState }) => {
 
 
     return (
@@ -73,7 +47,7 @@ const BillFormRequired = ({ requiredFormState, handleOnChange, validState }) => 
                 placeholder="Date..."
                 name="shoppingDate"
             />
-            <TagInput />
+            <TagInput setTagsToState={setTagsToState} tags={requiredFormState.tags} />
         </div>
     )
 }

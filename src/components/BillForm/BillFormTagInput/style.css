@@ -5,9 +5,34 @@ min-height: 50px;
 color: #333;
 padding: 8px 10px;
 }
-
-
 .tag-input-container__input{
     background-color: transparent;
      outline: none; border: none; width: 100px;
 }
+.tag-input-container__btn-add{
+    margin: 5px auto;
+    min-width: 40px;
+    width: 200px;
+    text-align: center;
+    padding: 5px 0px;
+    position: relative;
+    border: 1px solid #00c45a;
+    color: #00c45a;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.tag-input-container__btn-add:hover{
+    background-color: #00c45a;
+    color: #fff;
+}
+.tag-input-container__single-tag{
+    background-color: rgba(0,0,0,0.1);
+    border: '1px solid #888';
+    color: '#555';
+    border-radius: '3px';
+    padding: '3px';
+    margin: '2px 3px' ;
+}
+
+

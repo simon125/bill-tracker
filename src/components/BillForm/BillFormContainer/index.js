@@ -10,7 +10,8 @@ class BillForm extends Component {
         requiredForm: {
             price: '',
             shopName: '',
-            shoppingDate: ''
+            shoppingDate: '',
+            tags: []
         },
         optionalForm: {
             products: [],
@@ -35,6 +36,15 @@ class BillForm extends Component {
             message: '',
             visibility: false
         }
+    }
+
+    setTagsToState = (tags) => {
+        this.setState({
+            ...this.state, requiredForm: {
+                ...this.state.requiredForm,
+                tags: [...tags]
+            }
+        })
     }
 
     setValidState = (field, isValid, message) => {
@@ -88,12 +98,13 @@ class BillForm extends Component {
     }
     handleOnSubmit = (e) => {
         e.preventDefault()
-        const { price, shopName, shoppingDate } = this.state.requiredForm;
+        const { price, shopName, shoppingDate, tags } = this.state.requiredForm;
         const { payment, products } = this.state.optionalForm;
 
         if (this.validateReqForm(price, shopName, shoppingDate) && this.checkPrices(products, price)) {
             const bill = {   // struktura rachunku do listy
                 price,
+                tags,
                 nameShop: shopName,
                 shoppingDate,
                 payment,
@@ -110,7 +121,8 @@ class BillForm extends Component {
                     requiredForm: {
                         price: '',
                         shopName: '',
-                        shoppingDate: ''
+                        shoppingDate: '',
+                        tags: []
                     },
                     optionalForm: {
                         products: [],
@@ -215,6 +227,7 @@ class BillForm extends Component {
                         <div className="row mt-3">
                             <div className="col-sm-12 col-md-6 bill-form__col">
                                 <BillFormRequired
+                                    setTagsToState={this.setTagsToState}
                                     validState={this.state.reqFormValidState}
                                     requiredFormState={this.state.requiredForm}    // konkretne nazwy
                                     handleOnChange={this.handleOnChangeReqForm}
