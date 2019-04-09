@@ -22,24 +22,27 @@ const getDataToDisplay = (paymentMethods) => {
     const labels = [], data = [];
     for (let prop in paymentMethods) {
         if (paymentMethods.hasOwnProperty(prop)) {
-            labels.push(prop);
-            data.push(paymentMethods[prop]);
+            if (prop === "cash") {
+                labels[0] = prop;
+                data[0] = paymentMethods[prop];
+            } else if (prop === "card") {
+                labels[1] = prop;
+                data[1] = paymentMethods[prop];
+            } else {
+                labels[2] = prop;
+                data[2] = paymentMethods[prop];
+            }
         }
     }
+    debugger
     return {
         labels, data
     }
 }
 
-function PaymentStats({ bills, paymentMethodDateRange, setPaymentMethodsDateRange }) {
+function PaymentStats({ paymentMethodDateRange, setPaymentMethodsDateRange, dataToDisplay, percentageValues: { cashPercent, cardPercent } }) {
 
     const [isDateWidgetOpen, togleDateWidget] = useState(false);
-    const paymentMethods = getPaymentMethods(bills);
-    const dataToDisplay = getDataToDisplay(paymentMethods);
-
-    const val1 = Math.round((paymentMethods['cash'] / (paymentMethods['card'] + paymentMethods['cash'])) * 100);
-    const val2 = Math.round((paymentMethods['card'] / (paymentMethods['card'] + paymentMethods['cash'])) * 100);
-
 
     const handleOnDatePicker = () => {
         togleDateWidget(!isDateWidgetOpen);
@@ -65,11 +68,11 @@ function PaymentStats({ bills, paymentMethodDateRange, setPaymentMethodsDateRang
                 <div className="pl-2 w-50">
                     <span className="d-flex justify-content-center">
                         <i className="text-success fas fa-money-bill fa-3x mr-2"></i>
-                        <span style={{ fontSize: '30px' }}>{val1} %</span>
+                        <span style={{ fontSize: '30px' }}>{cashPercent} %</span>
                     </span>
                     <span className="d-flex justify-content-center">
                         <i style={{ color: '#6585bb' }} className="far fa-credit-card fa-3x mr-2"></i>
-                        <span style={{ fontSize: '30px' }}>{val2} %</span>
+                        <span style={{ fontSize: '30px' }}>{cardPercent} %</span>
                     </span>
                 </div>
             </div>
@@ -84,13 +87,29 @@ function PaymentStats({ bills, paymentMethodDateRange, setPaymentMethodsDateRang
     )
 }
 
+
 const mapStateToProps = (state) => {
     const allBills = state.state.bills;
     const filtredBills = getBillsFiltredByDate(allBills, state.statsSettings.paymentMethodDateRange);
+    const paymentMethods = getPaymentMethods(filtredBills);
+    const dataToDisplay = getDataToDisplay(paymentMethods);
+
+    let unknonwMethods = 0;
+    if (paymentMethods.hasOwnProperty('unknown')) {
+        unknonwMethods = paymentMethods['unknown'];
+    }
+
+    const cashPercent = Math.round((paymentMethods['cash'] / (paymentMethods['card'] + paymentMethods['cash'] + unknonwMethods)) * 100);
+    const cardPercent = Math.round((paymentMethods['card'] / (paymentMethods['card'] + paymentMethods['cash'] + unknonwMethods)) * 100);
+
 
     return {
-        bills: filtredBills,
-        paymentMethodDateRange: state.statsSettings.paymentMethodDateRange
+        dataToDisplay,
+        paymentMethodDateRange: state.statsSettings.paymentMethodDateRange,
+        percentageValues: {
+            cashPercent,
+            cardPercent
+        }
     }
 }
 
