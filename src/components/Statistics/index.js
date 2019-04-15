@@ -5,6 +5,7 @@ import {
 } from '../../actions/statsSettingsActions';
 
 import PaymentStats from '../PaymentStats';
+import ExpensStats from '../ExpensesStats';
 
 
 
@@ -36,19 +37,18 @@ class Statistics extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-10 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
+                    <div className="col-11 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
                         <PaymentStats />
                     </div>
-                    <div className="col-10 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
+                    <div className="col-11 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
 
                     </div>
                 </div>
-                {/* <div className="row">
-                    <div className="col-10 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
+                <div className="row">
+                    <div className="col-11 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
+                        <ExpensStats />
                     </div>
-                    <div className="col-10 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
-                    </div>
-                </div> */}
+                </div>
             </div>
         )
     }

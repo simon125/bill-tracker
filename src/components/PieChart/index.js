@@ -11,6 +11,7 @@ const Chart = ({ data = [], labels = [] }) => {
                 backgroundColor: [
                     '#00c45a',
                     '#6585bb',
+                    '#1943aa'
                 ]
             }
         ]

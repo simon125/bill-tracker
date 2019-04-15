@@ -15,7 +15,7 @@ class BillForm extends Component {
         },
         optionalForm: {
             products: [],
-            payment: ''
+            payment: 'unknown'
         },
         reqFormValidState: {
             reqPrice: {
@@ -126,7 +126,7 @@ class BillForm extends Component {
                     },
                     optionalForm: {
                         products: [],
-                        payment: ''
+                        payment: 'unknown'
                     }
                 }
             })

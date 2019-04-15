@@ -1,114 +1,97 @@
-import React, { Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
-import moment from 'moment';
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
 
+const ExpenseTimeChart = ({ labels, data }) => {
+    // debugger
+    const chartData = {
+        labels: [' ', ...labels, ' '],
+        datasets: [
+            {
+                data: [' ', ...data, ' '],
+                fontColor: '#fff',
+                borderColor: '#fff',
+                backgroundColor: '#aaa',
+                borderWidth: 1
+            }
+        ]
+    }
+    const options = {
+        layout: {
 
-class ExpenseTimeChart extends Component {
+        },
+        elements: {
+            rectangle: {
+                borderWidth: 2
+            }
+        },
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
 
-    state = {
-        chartData: {
-            labels: [],
-            datasets: [
-                {
-                    label: 'Numbers',
-                    data: []
+                ticks: {
+                    fontColor: "white",
+                    fontSize: 17,
+                    callback: function (value) {
+                        return value.toFixed(2)
+                    }
+
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Price (PLN)',
+                    fontColor: '#fff'
+                },
+                gridLines: {
+                    lineWidth: 2
                 }
-            ]
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: "white",
+                    fontSize: 14,
+                    maxRotation: 40,
+                    userCallback: function (item, index) {
+                        let number = window.innerWidth < 1000 ? 10 : 5;
+                        if (index === 0) return item;
+                        if (((index + 1) % number) === 0) return item;
+                        else return ""
+                    },
+                    autoSkip: false
+                },
+                gridLines: {
+                    drawOnChartArea: false,
+                    drawTicks: false,
+                    lineWidth: 2
+                }
+            }]
         }
     }
-    componentDidMount() {
-        const bills = this.props.bills;
-        const labels = [], data = [];
-
-        bills.sort((a, b) => {
-            return new Date(a.shoppingDate).getTime() - new Date(b.shoppingDate).getTime();
-        })
-            .forEach((bill) => {
-                labels.push(bill.shoppingDate);
-                data.push(bill.price);
-            });
-
-        this.setState({
-            chartData: {
-                labels,
-                datasets: [
-                    {
-                        data,
-                        fontColor: '#fff',
-                        borderColor: '#fff',
-                        backgroundColor: '#aaa',
-                        borderWidth: 0.3
-                    }
-                ]
-            }
-        })
-    }
-
-
-    getHeight = () => {
+    const getHeight = () => {
         const width = window.innerWidth;
         if (width >= 1240) {
-            return 80;
+            return 50;
         } else if (width < 1240 && width > 1000) {
-            return 100;
+            return 60;
         } else if (width <= 1000 && width >= 768) {
-            return 140
+            return 100
         } else if (width < 768 && width > 500) {
-            return 70;
+            return 40;
         }
         else if (width <= 580) {
-            return 100;
+            return 60;
         }
     }
-
-    render() {
-        return (
-            <div className="chart">
-                <Bar
-                    width={100}
-                    height={this.getHeight()}
-                    data={this.state.chartData}
-                    options={{
-                        elements: {
-                            rectangle: {
-                                borderWidth: 2
-                            }
-                        },
-                        legend: {
-                            display: false
-                        },
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    fontColor: "white",
-                                    fontSize: 14,
-                                    callback: function (value) {
-                                        return value.toFixed(2)
-                                    }
-
-                                },
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Price (PLN)',
-                                    fontColor: '#fff'
-                                }
-                            }],
-                            xAxes: [{
-                                barPercentage: 0.5,
-                                ticks: {
-                                    fontColor: "white",
-                                    fontSize: 12,
-                                    maxRotation: 90,
-                                }
-                            }]
-                        }
-
-                    }
-                    }
-                />
-            </div>
-        )
-    }
+    return (
+        <React.Fragment>
+            <Bar
+                width={100}
+                height={35}
+                data={chartData}
+                options={options}
+            />
+        </React.Fragment>
+    )
 }
-
 export default ExpenseTimeChart
