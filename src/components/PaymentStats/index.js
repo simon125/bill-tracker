@@ -34,7 +34,6 @@ const getDataToDisplay = (paymentMethods) => {
             }
         }
     }
-    debugger
     return {
         labels, data
     }
@@ -90,7 +89,8 @@ function PaymentStats({ paymentMethodDateRange, setPaymentMethodsDateRange, data
 
 const mapStateToProps = (state) => {
     const allBills = state.state.bills;
-    const filtredBills = getBillsFiltredByDate(allBills, state.statsSettings.paymentMethodDateRange);
+    const paymentMethodDateRange = state.statsSettings.paymentMethodDateRange;
+    const filtredBills = getBillsFiltredByDate(allBills, paymentMethodDateRange);
     const paymentMethods = getPaymentMethods(filtredBills);
     const dataToDisplay = getDataToDisplay(paymentMethods);
 
@@ -105,7 +105,7 @@ const mapStateToProps = (state) => {
 
     return {
         dataToDisplay,
-        paymentMethodDateRange: state.statsSettings.paymentMethodDateRange,
+        paymentMethodDateRange,
         percentageValues: {
             cashPercent,
             cardPercent
