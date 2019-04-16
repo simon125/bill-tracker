@@ -66,6 +66,7 @@ export const getBillsFiltredByDate = (bills, rangeDate) => {
         if (moment(shoppingDate, 'DD/MM/YYYY').isBetween(moment(startDate, 'DD/MM/YYYY'), moment(endDate, 'DD/MM/YYYY'))) {
             return true;
         } else return false;
-    })
+    });
+
     return filteredBills;
 }
