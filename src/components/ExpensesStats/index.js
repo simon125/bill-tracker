@@ -27,18 +27,18 @@ const ExpensesStats = ({
     return (
         <React.Fragment>
             <div className="d-flex justify-content-around my-1">
-                <button className="btn btn-primary">
+                {/* <button className="btn btn-primary">
                     <i className="fas fa-arrow-left"></i>
-                </button>
+                </button> */}
                 <h3 className="mb-3">
                     Expenses graph
-            </h3>
-                <button className="btn btn-primary">
+                </h3>
+                {/* <button className="btn btn-primary">
                     <i className="fas fa-arrow-right"></i>
-                </button>
+                </button> */}
             </div>
             <ExpenseTimeChart data={data} labels={labels} />
-            <div className="d-flex justify-content-around pl-5">
+            {/* <div className="d-flex justify-content-around pl-5">
                 <div className="d-flex">
                     <button style={{ height: '40px' }} className="btn btn-primary mr-2" onClick={() => handleOnClick(5)}>
                         <i className="fas fa-angle-left"></i>
@@ -62,7 +62,7 @@ const ExpensesStats = ({
                         <i className="fas fa-angle-right"></i>
                     </button>
                 </div>
-            </div>
+            </div> */}
             <div className="d-flex">
 
                 <div className="form-group mt-2 text-left">
@@ -177,7 +177,6 @@ const mapStateToProps = (state) => {
     const allBills = state.state.bills;
     const expensesDateRange = state.statsSettings.expensesDateRange;
     const filtredBillsByDate = getBillsFiltredByDate(allBills, expensesDateRange);
-    debugger
     const filtredBills = getBillsFiltredByDate(filtredBillsByDate, expensesDateRange);
     const sortedBills = sortBillsByDate(filtredBills, true);
     const billsList = getListOfBills(sortedBills);

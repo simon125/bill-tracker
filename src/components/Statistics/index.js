@@ -6,6 +6,7 @@ import {
 
 import PaymentStats from '../PaymentStats';
 import ExpensStats from '../ExpensesStats';
+import ExpenseTypeStats from '../ExpenseTypeStats';
 
 
 
@@ -41,7 +42,7 @@ class Statistics extends Component {
                         <PaymentStats />
                     </div>
                     <div className="col-11 col-md-5 col-lg-5 bg-secondary p-3 mx-auto mt-4" style={{ minHeight: '500px' }}>
-
+                        <ExpenseTypeStats />
                     </div>
                 </div>
                 <div className="row">

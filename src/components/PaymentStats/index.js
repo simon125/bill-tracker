@@ -50,9 +50,13 @@ function PaymentStats({ paymentMethodDateRange, setPaymentMethodsDateRange, data
     return (
         <React.Fragment>
             <h3 className="mb-3">Payment methods</h3>
-            <PieChart
-                labels={dataToDisplay.labels}
-                data={dataToDisplay.data} />
+            {dataToDisplay['data'].length === 0 ?
+                <h4 className="h-50 my-5">No data to display</h4>
+                :
+                <PieChart
+                    labels={dataToDisplay.labels}
+                    data={dataToDisplay.data} />}
+
             <div className="form-group mt-2 text-left d-flex">
                 <div className="w-50">
                     <label htmlFor="date-range">Date range</label>
@@ -94,13 +98,14 @@ const mapStateToProps = (state) => {
     const paymentMethods = getPaymentMethods(filtredBills);
     const dataToDisplay = getDataToDisplay(paymentMethods);
 
-    let unknonwMethods = 0;
+    let unknonwMethods = 0, cashPercent = 0, cardPercent = 0;
     if (paymentMethods.hasOwnProperty('unknown')) {
         unknonwMethods = paymentMethods['unknown'];
     }
-
-    const cashPercent = Math.round((paymentMethods['cash'] / (paymentMethods['card'] + paymentMethods['cash'] + unknonwMethods)) * 100);
-    const cardPercent = Math.round((paymentMethods['card'] / (paymentMethods['card'] + paymentMethods['cash'] + unknonwMethods)) * 100);
+    if (dataToDisplay['data'].length !== 0 && Math.max(...dataToDisplay['data']) !== 0) {
+        cashPercent = Math.round((paymentMethods['cash'] / (paymentMethods['card'] + paymentMethods['cash'] + unknonwMethods)) * 100);
+        cardPercent = Math.round((paymentMethods['card'] / (paymentMethods['card'] + paymentMethods['cash'] + unknonwMethods)) * 100);
+    }
 
 
     return {
