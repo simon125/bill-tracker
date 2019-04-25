@@ -26,11 +26,19 @@ const ExpensesStats = ({
 
     return (
         <React.Fragment>
-            <h3 className="mb-3">
-                Expenses graph
-            </h3>
+            <div className="d-flex justify-content-around my-1">
+                {/* <button className="btn btn-primary">
+                    <i className="fas fa-arrow-left"></i>
+                </button> */}
+                <h3 className="mb-3">
+                    Expenses graph
+                </h3>
+                {/* <button className="btn btn-primary">
+                    <i className="fas fa-arrow-right"></i>
+                </button> */}
+            </div>
             <ExpenseTimeChart data={data} labels={labels} />
-            <div className="d-flex justify-content-around pl-5">
+            {/* <div className="d-flex justify-content-around pl-5">
                 <div className="d-flex">
                     <button style={{ height: '40px' }} className="btn btn-primary mr-2" onClick={() => handleOnClick(5)}>
                         <i className="fas fa-angle-left"></i>
@@ -54,7 +62,7 @@ const ExpensesStats = ({
                         <i className="fas fa-angle-right"></i>
                     </button>
                 </div>
-            </div>
+            </div> */}
             <div className="d-flex">
 
                 <div className="form-group mt-2 text-left">
@@ -70,15 +78,15 @@ const ExpensesStats = ({
                 </div>
 
                 <div className="p-1 pt-3 d-flex justify-content-around align-items-center w-100 h3" style={{ fontWeight: '100' }}>
-                    <p>
+                    <p className="m-0">
                         <span >Max: </span>
                         <b>{highestExpense} PLN</b>
                     </p>
-                    <p>
+                    <p className="m-0">
                         <span >Avg: </span>
                         <b>{avarageExpense = 0} PLN</b>
                     </p>
-                    <p>
+                    <p className="m-0">
                         <span >Min: </span>
                         <b>{lowestExpense} PLN</b>
                     </p>
@@ -104,7 +112,6 @@ const getListOfBills = bills => {
             list[bill.shoppingDate] = bill.price;
         }
     });
-    debugger
     return list;
 }
 

@@ -52,9 +52,10 @@ const ExpenseTimeChart = ({ labels, data }) => {
                     fontColor: "white",
                     fontSize: 14,
                     maxRotation: 40,
+                    padding: 15,
                     userCallback: function (item, index) {
                         let number = window.innerWidth < 1000 ? 10 : 5;
-                        if (index === 0) return item;
+                        if (index === 1) return item;
                         if (((index + 1) % number) === 0) return item;
                         else return ""
                     },
@@ -66,6 +67,29 @@ const ExpenseTimeChart = ({ labels, data }) => {
                     lineWidth: 2
                 }
             }]
+        },
+        tooltips: {
+            callbacks: {
+                title: function (tooltipItem, data) {
+                    return data['labels'][tooltipItem[0]['index']];
+                },
+                label: function (tooltipItem, data) {
+                    return parseFloat(data['datasets'][0]['data'][tooltipItem['index']]).toFixed(2) + " PLN";
+                },
+                labelColor: function (tooltipItem, chart) {
+                    return {
+                        borderColor: 'rgb(255, 255, 255)',
+                        backgroundColor: 'rgb(255, 255, 255)'
+                    };
+                }
+            },
+            backgroundColor: '#2a3f53',
+            titleFontSize: 16,
+            titleFontColor: '#eee',
+            bodyFontColor: '#eee',
+            bodyFontSize: 14,
+            // padding: 5,
+            displayColors: false
         }
     }
     const getHeight = () => {
@@ -84,14 +108,14 @@ const ExpenseTimeChart = ({ labels, data }) => {
         }
     }
     return (
-        <React.Fragment>
+        <React.Fragment >
             <Bar
                 width={100}
                 height={35}
                 data={chartData}
                 options={options}
             />
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 export default ExpenseTimeChart
