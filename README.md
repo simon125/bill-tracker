@@ -42,7 +42,7 @@ But this is not end of bill tracker I'm planning to create second version of thi
 
 Below are mockups which I've created with  [https://moqups.com/](https://moqups.com/)
 
-![Mock1](https://github.com/simon125/bill-tracker/tree/master/src/mockups/home.png "Mock 1")
+![Mock1](https://github.com/simon125/bill-tracker/blob/master/src/mockups/home.png "Mock 1")
 
 ![Mock2](https://github.com/simon125/bill-tracker/tree/master/src/mockups/add-bill.png "Mock 2")
 
