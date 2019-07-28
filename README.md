@@ -13,7 +13,7 @@ If you want to check demo of app you can easyli go [here](http://bill-tracker.su
 
 ```
 git clone https://github.com/simon125/bill-tracker.git
-cd bill tracker
+cd bill-tracker
 npm i
 npm start
 ```
