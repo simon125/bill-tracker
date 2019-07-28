@@ -2,10 +2,6 @@
 
 ### Bill tracker simple CRUD app which allows to adding, storing, overviewing, tracking bills. It was created for my needs to observe my money spending habits. It is not compleated yet it's only proof of concept but basic funcionalities are working fine on the client. 
 
-## How it works and looks like? 
-
-
-
 
 ## How you can check that app?
 
