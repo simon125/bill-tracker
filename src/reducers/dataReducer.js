@@ -2,39 +2,50 @@ const initialState = {
     bills: [
         {
             price: 65,
-            nameShop: 'Jolka',
+            nameShop: 'Orlen',
             shoppingDate: '2019-02-14',
             payment: 'cash',
             products: [
-                { uid: 'safadskfasdnf', productName: 'Piwo', productPrice: 5, productAmount: 2 }
+                { uid: 'safadskfasdnf', productName: 'Paliwo', productPrice: 65, productAmount: 2 }
             ]
         },
         {
-            price: 12,
-            nameShop: 'Orlen',
+            price: 120,
+            nameShop: 'Lidl',
             shoppingDate: '2019-03-07',
             payment: 'card',
             products: [
-                { uid: 'fdlkmrkrkeri', productName: 'Benzyna', productPrice: 5.5, productAmount: 10 },
-                { uid: '283744fmrjcs', productName: 'Gaz', productPrice: 2.3, productAmount: 2 }
+                { uid: 'fdlkmrkrkeri', productName: 'mleko', productPrice: 5, productAmount: 10 },
+                { uid: '283744fmrjcs', productName: 'płatki', productPrice: 2, productAmount: 2 },
+                { uid: '283744fm12es', productName: 'kawa', productPrice: 25, productAmount: 2 }
+
             ]
         },
         {
-            price: 123,
-            nameShop: 'Jolka',
+            price: 25,
+            nameShop: 'Żabka',
             shoppingDate: '2019-03-14',
             payment: 'cash',
             products: [
-                { uid: 'safadskfasdnf', productName: 'Piwo', productPrice: 5, productAmount: 2 }
+                { uid: 'safadskfasdnf', productName: 'czekolada', productPrice: 5, productAmount: 2 },
+                { uid: 'safadskfkjane4kdnf', productName: 'lody', productPrice: 5, productAmount: 2 },
+                { uid: 'safadskfasdnffdcd', productName: 'czipsy', productPrice: 5, productAmount: 1 },
+                { uid: 'safadskfascdasdnf', productName: 'orzeszki', productPrice: 5, productAmount: 2 },
+                { uid: 'safadskfkj5fane4kdnf', productName: 'popcorn', productPrice: 5, productAmount: 2 },
+                { uid: 'safadskfa332sdnffdcd', productName: 'ketchup', productPrice: 5, productAmount: 1 }
+
+
             ]
         },
         {
-            price: 44,
-            nameShop: 'Jolka',
+            price: 20,
+            nameShop: 'Piekarnia',
             shoppingDate: '2019-02-24',
             payment: 'cash',
             products: [
-                { uid: 'safadskfasdnf', productName: 'Piwo', productPrice: 5, productAmount: 2 }
+                { uid: 'safadskfasdnf', productName: 'Chleb', productPrice: 5, productAmount: 2 },
+                { uid: 'kusdhferxd', productName: 'bułeczki', productPrice: 2, productAmount: 5 }
+
             ]
         },
         {
@@ -49,20 +60,22 @@ const initialState = {
         },
         {
             price: 80,
-            nameShop: 'Jolka',
+            nameShop: 'Carefour',
             shoppingDate: '2019-01-14',
             payment: 'cash',
             products: [
-                { uid: 'safadskfasdnf', productName: 'Piwo', productPrice: 5, productAmount: 2 }
+                { uid: 'safadskfasdnf', productName: 'Piwo', productPrice: 5, productAmount: 4 },
+                { uid: 'safadskfaascsdnf', productName: 'Składniki na grilla', productPrice: 5, productAmount: 10 },
+                { uid: 'safadskf23e23easdnf', productName: 'Węgiel do grilla', productPrice: 10, productAmount: 1 },
             ]
         },
         {
-            price: 27.54,
+            price: 10,
             nameShop: 'Jolka',
             shoppingDate: '2019-05-22',
             payment: 'cash',
             products: [
-                { uid: 'safadskfasdnf', productName: 'Piwo', productPrice: 5, productAmount: 2 }
+                { uid: 'safadskfasdnf', productName: 'Batonik', productPrice: 5, productAmount: 2 }
             ]
         },
         // {
