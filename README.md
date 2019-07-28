@@ -36,7 +36,8 @@ such approach I have found on medium blog when I was looking for good practise f
 
 But this is not end of bill tracker I'm planning to create second version of this because of my huge willings and needs of such tool. For next version I'm gonna use MaterialUI instead Bootstrap and include React Hooks.
 
-Below are mockups for second version which I've created with  [https://moqups.com/](https://moqups.com/)
+Below are mockups for second version which I've created with  [https://moqups.com/](https://moqups.com/),
+I'm plannig to start working on that after ending my currently works on google-keep-clone app.
 
 ![Mock1](https://github.com/simon125/bill-tracker/blob/master/src/mockups/home.png "Mock 1")
 
