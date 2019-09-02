@@ -31,7 +31,7 @@ For this project I have used:
 
 ## Next steps
 
-I have decided to prevent works on this app cause of bad approach to naming files,
+I have decided to stop works on this app cause of bad approach to naming files,
 such approach I have found on medium blog when I was looking for good practise for that.
 
 But this is not end of bill tracker I'm planning to create second version of this because of my huge willings and needs of such tool. For next version I'm gonna use MaterialUI instead Bootstrap and include React Hooks.
