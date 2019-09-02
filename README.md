@@ -1,6 +1,6 @@
 # Bill tracker (POC)
 
-### Bill tracker simple CRUD app which allows to adding, storing, overviewing, tracking bills. It was created for my needs to observe my money spending habits. It is not compleated yet it's only proof of concept but basic funcionalities are working fine on the client. 
+### Bill tracker simple app which allows to adding, storing, overviewing, tracking bills. It was created for my needs to observe my money spending habits. It is not compleated yet it's only proof of concept but basic funcionalities are working fine on the client. 
 
 
 ## How you can check that app?
